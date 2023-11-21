@@ -1,0 +1,59 @@
+#!/bin/bash
+
+path=`pwd`
+mkdir -p ./temp
+mkdir -p ./output
+
+DIR=$path
+PROGS=$DIR"/lib"
+TEMP=$DIR"/temp"
+
+while getopts "hm:k:s:t:l:" opt; do
+case $opt in
+h)
+    echo "examples of use:"	
+    echo "mastodon -m timeline -s -k "putin" 01-10-2023 -t 01-11-2023 -l en"
+    echo "mastodon -m search -k trump" 
+;;
+m)
+module="$OPTARG"
+;;
+k)
+key="$OPTARG"
+;;
+s)
+since="$OPTARG"
+;;
+t)
+to="$OPTARG"
+;;
+l)
+language="$OPTARG"
+;;
+\?)
+echo "Invalid: -$OPTARG" >&2
+echo "mastodon -m timeline -s 01-10-2023 -t 01-11-2023 -l en"
+;;
+esac
+done
+
+#shift $((OPTIND-1))
+
+if [ "$module" == "search" ] && [ "$key" != "" ]; then
+    echo "running module search"
+    python3 $PROGS/mastodon_search.py $key
+    cat $TEMP/x.tsv | cut -f 2 > $TEMP/x.txt
+    python3 $PROGS/cleaning_html.py 
+elif [ "$module" == "timeline" ] && [ "$key" != "" ] && [ "$since" != "" ] && [ "$to" != "" ] && [ "$language" != "" ]; then
+    echo "running module search"
+    python3 $PROGS/mastodon_timeline.py $key $since $to
+    cat $TEMP/x.tsv   |grep -P "\t${language}$" | cut -f 2 > $TEMP/x.txt
+    python3 $PROGS/cleaning_html.py
+    
+elif [ "$module" == "timeline" ] && [ "$key" != "" ] && [ "$since" != "" ] && [ "$to" != "" ] ; then
+    echo "running module search"
+    python3 $PROGS/mastodon_timeline.py $key $since $to
+    cat $TEMP/x.tsv | cut -f 2 > $TEMP/x.txt
+    python3 $PROGS/cleaning_html.py 
+fi
+
