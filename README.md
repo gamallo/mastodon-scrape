@@ -13,7 +13,7 @@ Scrapping toots from Mastodon without any authentification
 
 ```./mastodon -m timeline -k putin -s 2023-11-18 -t 2023-11-19```
 
-*  With the module `timeline', you can use language selection (en, es, pt...):
+*  With the module `timeline', you can use language selection (pt, en, gl, es, ...):
 
 ```./mastodon -m timeline -k putin -s 2023-11-18 -t 2023-11-19 -l en```
 
