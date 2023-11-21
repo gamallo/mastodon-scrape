@@ -9,7 +9,7 @@ Scrapping toots from Mastodon without any authentification
 
 ## How to use:
 
-* Module `timeline`: retrieve toots using hashtags along a timeline You need to specify the hashtag or keyword and a specific period of time (since (-s)  to (-t).
+* Module `timeline`: this module uses hashtags to retrieve toots over time, starting with the present and looking backwards. You need to specify a hashtag/keyword (for instance -k putin) and a specific period of time: for instance: `-s 2023-11-18 -t 2023-11-19`. This is a possible query:
 
 ```./mastodon -m timeline -k putin -s 2023-11-18 -t 2023-11-19```
 
@@ -19,5 +19,5 @@ Scrapping toots from Mastodon without any authentification
 
 * Module `search`: retrieve toots using a keyword. It only allows you to extract 40 toots for each search:
 
-```./mastodon -m search -k putin```
+```./mastodon -m search -k trump```
 
