@@ -1,6 +1,6 @@
 # mastodon-scrape
 
-Scrapping toots from Mastodon without any authentification
+Scraping toots from Mastodon without any authentification
 
 
 ## Requeriments:
