@@ -11,9 +11,11 @@ TEMP=$DIR"/temp"
 while getopts "hm:k:s:t:l:" opt; do
 case $opt in
 h)
+    echo "./mastadon -m module_name -k keyword/hashtag [-s since_date] [-t to_date] [-l language]"
+    echo "module_name = timeline or search (with timeline, since_date and to_date are mandatory)" 
     echo "examples of use:"	
-    echo "mastodon -m timeline -s -k "putin" 01-10-2023 -t 01-11-2023 -l en"
-    echo "mastodon -m search -k trump" 
+    echo "./mastodon -m timeline -k "putin" -s 01-10-2023 -t 01-11-2023 -l en"
+    echo "./mastodon -m search -k trump" 
 ;;
 m)
 module="$OPTARG"
