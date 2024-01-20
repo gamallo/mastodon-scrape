@@ -21,6 +21,6 @@ Scraping toots from Mastodon (instance `mastodon.social`) without any authentifi
 
 ```./mastodon -m search -k trump```
 
-## OUTPUT
+## Output
 
 The search gives a text plain file (`content.txt`) in directory `output`. Metadata of all retrieved toots are stored in directory `temp`.
