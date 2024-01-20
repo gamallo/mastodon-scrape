@@ -22,22 +22,15 @@ is_end = False
 while True:
     r = requests.get(URL, params=params)
     toots = json.loads(r.text)
-    print(toots)
-
-    if len(toots) == 0:
-        break
     for t in toots:
       t_txt = json.dumps(t)
 
       date = re.findall(r"created\_at\": \"([0-9-]+)[^\"]+\"\, \"in\_reply", t_txt)
-      print(date, since_str)
-      if len(date) == 0:
-        break
       date_str=date[0]
       date = datetime.strptime(date_str, "%Y-%m-%d")
       print(date, since_str)
       if date >= since and date < till:
-          print(t_txt)
+          #print(t_txt)
           results.append(t)
       elif date_str < since_str:
           is_end = True
