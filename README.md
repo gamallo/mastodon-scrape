@@ -1,6 +1,6 @@
 # mastodon-scrape
 
-Scraping toots from Mastodon without any authentification
+Scraping toots from Mastodon (instance `mastodon.social`) without any authentification
 
 
 ## Requeriments:
@@ -21,3 +21,6 @@ Scraping toots from Mastodon without any authentification
 
 ```./mastodon -m search -k trump```
 
+## OUTPUT
+
+The search gives a text plain file (`content.txt`) in directory `output`. Metadata of all retrieved toots are stored in directory `temp`.
