@@ -5,7 +5,7 @@ Scraping toots from Mastodon (instance `mastodon.social`) without any authentifi
 
 ## Requeriments:
 * Bash and Python3
-* Python modules: panda, requests, json (use `pip install`) 
+* Python modules: pandas, requests, json (use `pip install`)
 
 ## How to use:
 
