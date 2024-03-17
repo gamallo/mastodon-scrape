@@ -39,8 +39,13 @@ while True:
     if is_end:
       break
 
-    max_id = toots[-1]['id']
-    params['max_id'] = max_id
+    if toots:
+        max_id = toots[-1]['id']
+        params['max_id'] = max_id
+    else:
+        print("decoding problems")
+        break
+        
 
 #df = pd.DataFrame(results)
 
