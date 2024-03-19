@@ -22,28 +22,32 @@ is_end = False
 while True:
     r = requests.get(URL, params=params)
     toots = json.loads(r.text)
+    
     for t in toots:
-      t_txt = json.dumps(t)
-
-      date = re.findall(r"created\_at\": \"([0-9-]+)[^\"]+\"\, \"in\_reply", t_txt)
-      date_str=date[0]
-      date = datetime.strptime(date_str, "%Y-%m-%d")
-      print(date, since_str)
-      if date >= since and date < till:
-          #print(t_txt)
-          results.append(t)
-      elif date_str < since_str:
-          is_end = True
-          break
+            t_txt = json.dumps(t)
+            date = re.findall(r"created\_at\": \"([0-9-]+)[^\"]+\"\, \"in\_reply", t_txt)
+            #print(date)
+            if date:  # Check if the date list is not empty
+                date_str = date[0]
+                #print(date_str)
+                date = datetime.strptime(date_str, "%Y-%m-%d")
+                print(date, since_str)
+                if date >= since and date < till:
+                    results.append(t)
+                elif date_str < since_str:
+                    is_end = True
+                    break
+            else:
+                print("No date found in tweet:", t_txt)
 
     if is_end:
-      break
+            break
 
-    if toots:
+    if toots and date:  # Check if the 'toots' list is not empty
         max_id = toots[-1]['id']
         params['max_id'] = max_id
     else:
-        print("decoding problems")
+        print("No tweets found")
         break
         
 
